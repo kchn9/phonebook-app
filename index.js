@@ -1,13 +1,15 @@
 // Environment variables
 require("dotenv").config();
 
-// Express config
+// Express config and middleware
 const PORT = process.env.PORT;
 
 const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
 const app = express();
 app.use(express.json());
-const morgan = require("morgan");
+app.use(cors());
 app.use(
   morgan(function (tokens, req, res) {
     return [

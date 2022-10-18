@@ -11,6 +11,12 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan);
 
+// Unknown endpoint handler
+const unknownEndpoint = (req, res) => {
+  res.status(404).json({ error: "404 Not found" });
+};
+app.use(unknownEndpoint);
+
 // MongoDB models
 const Person = require("./models/person");
 
@@ -23,7 +29,7 @@ app.get("/api/persons", (req, res) => {
 });
 
 // POST /api/persons
-app.post("/api/persons", (req, res) => {
+app.post("/api/persons", (req, res, next) => {
   const newPerson = new Person({
     ...req.body,
     created: Date.now(),
@@ -32,13 +38,22 @@ app.post("/api/persons", (req, res) => {
   newPerson
     .save()
     .then((createdPerson) => res.status(201).json(createdPerson))
-    .catch((err) => {
-      console.log(err);
-      res.status(400).json({
-        error: "Wrong phone number",
-      });
-    });
+    .catch((error) => next(error));
 });
+
+// Error handling
+function errorHandler(error, req, res, next) {
+  console.log(error.message);
+
+  if (error.name === "ValidationError") {
+    return res.status(400).json({
+      error: error.message,
+    });
+  }
+
+  next(error);
+}
+app.use(errorHandler);
 
 // Run server
 app.listen(PORT, () => {

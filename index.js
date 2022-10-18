@@ -19,11 +19,16 @@ app.use(
       "-",
       tokens["response-time"](req, res),
       "ms",
-      "| body:",
-      JSON.stringify(req.body),
+      req.body && `| body: ${JSON.stringify(req.body)}`,
     ].join(" ");
   })
 );
+
+// MongoDB models
+const Person = require("./models/person");
+
+// Endpoints
+app.get("/api/persons", (req, res) => {});
 
 // Run server
 app.listen(PORT, () => {

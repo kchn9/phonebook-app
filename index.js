@@ -6,6 +6,7 @@ const PORT = process.env.PORT;
 
 const express = require("express");
 const app = express();
+app.use(express.json());
 
 // Run server
 app.listen(PORT, () => {

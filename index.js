@@ -11,12 +11,6 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan);
 
-// Unknown endpoint handler
-const unknownEndpoint = (req, res) => {
-  res.status(404).json({ error: "404 Not found" });
-};
-app.use(unknownEndpoint);
-
 // MongoDB models
 const Person = require("./models/person");
 
@@ -41,6 +35,25 @@ app.post("/api/persons", (req, res, next) => {
     .catch((error) => next(error));
 });
 
+// GET /api/persons/:id
+app.get("/api/persons/:id", (req, res, next) => {
+  const id = req.params.id;
+
+  Person.findById(id)
+    .then((person) => {
+      res.json(person);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// Unknown endpoint handler
+const unknownEndpoint = (req, res) => {
+  res.status(404).json({ error: "404 Not found" });
+};
+app.use(unknownEndpoint);
+
 // Error handling
 function errorHandler(error, req, res, next) {
   console.log(error.message);
@@ -48,6 +61,11 @@ function errorHandler(error, req, res, next) {
   if (error.name === "ValidationError") {
     return res.status(400).json({
       error: error.message,
+    });
+  }
+  if (error.name === "CastError") {
+    return res.status(400).json({
+      error: "Malformatted id",
     });
   }
 

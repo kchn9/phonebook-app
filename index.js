@@ -29,9 +29,19 @@ app.post("/api/persons", (req, res, next) => {
     created: Date.now(),
   });
 
-  newPerson
-    .save()
-    .then((createdPerson) => res.status(201).json(createdPerson))
+  Person.findOne({ fullName: newPerson.fullName })
+    .then((person) => {
+      if (person) {
+        return res.status(409).json({
+          id: person.id,
+        });
+      } else {
+        newPerson
+          .save()
+          .then((createdPerson) => res.status(201).json(createdPerson))
+          .catch((error) => next(error));
+      }
+    })
     .catch((error) => next(error));
 });
 

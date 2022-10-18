@@ -48,9 +48,45 @@ app.get("/api/persons/:id", (req, res, next) => {
     });
 });
 
+// PUT /api/persons/:id
+app.put("/api/persons/:id", (req, res, next) => {
+  const person = {
+    fullName: req.body.fullName,
+    number: req.body.number,
+  };
+
+  Person.findByIdAndUpdate(req.params.id, person, {
+    new: true,
+    runValidators: true,
+    context: "query",
+  })
+    .then((updatedPerson) => {
+      res.json(updatedPerson);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+// DELETE /api/persons/:id
+app.delete("/api/persons/:id", (req, res, next) => {
+  Person.findByIdAndRemove(req.params.id)
+    .then((deletedPerson) => {
+      if (deletedPerson === null) {
+        return res.status(404).json({
+          error: "Person not found",
+        });
+      }
+      res.status(200).json(deletedPerson);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 // Unknown endpoint handler
 const unknownEndpoint = (req, res) => {
-  res.status(404).json({ error: "404 Not found" });
+  res.status(404).json({ error: "Page not found" });
 };
 app.use(unknownEndpoint);
 

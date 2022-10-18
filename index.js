@@ -28,7 +28,12 @@ app.use(
 const Person = require("./models/person");
 
 // Endpoints
-app.get("/api/persons", (req, res) => {});
+// GET /api/persons
+app.get("/api/persons", (req, res) => {
+  Person.find({}).then((allPersons) => {
+    res.json(allPersons);
+  });
+});
 
 // Run server
 app.listen(PORT, () => {

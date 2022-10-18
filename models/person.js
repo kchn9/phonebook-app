@@ -26,7 +26,7 @@ const personSchema = mongoose.Schema({
     minLength: [8, "should be at least 8 char long"],
     validate: {
       validator: function (number) {
-        return /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(
+        return /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/.test(
           number
         );
       },

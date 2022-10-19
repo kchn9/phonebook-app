@@ -29,8 +29,7 @@ app.post("/api/persons", (req, res, next) => {
     created: Date.now(),
   });
 
-  Person.findOne()
-    .or([{ fullName: newPerson.fullName }, { number: newPerson.number }])
+  Person.findOne({ fullName: newPerson.fullName })
     .then((person) => {
       if (person) {
         return res.status(409).json({

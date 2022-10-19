@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "lint": "eslint .",
-    "inspect": "node --inspect index.js"
+    "inspect": "node --inspect index.js",
+    "build:ui": "rm -rf dist && cd ../phonebook-frontend && npm run build && cp -r dist ../phonebook-api/"
   },
   "author": "kchn9",
   "license": "MIT",

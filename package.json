@@ -7,7 +7,9 @@
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "inspect": "node --inspect index.js",
-    "build:ui": "rm -rf dist && cd ../phonebook-frontend && npm run build && cp -r dist ../phonebook-api/"
+    "build:ui": "rm -rf dist && cd ../phonebook-frontend && npm run build && cp -r dist ../phonebook-api/",
+    "deploy": "fly deploy",
+    "deploy:full": "npm run build:ui && npm run deploy"
   },
   "author": "kchn9",
   "license": "MIT",

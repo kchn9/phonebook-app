@@ -4,3 +4,4 @@
 .env
 .eslintignore
 .eslintrc.js
+fly.toml

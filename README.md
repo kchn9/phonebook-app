@@ -1,5 +1,6 @@
 <img src="https://iili.io/ti97mg.md.png" height="150" alt="Logo">
 <h1 style="display: inline; vertical-align: top; line-height: 4; margin-left: 10px">Phonebook</h1>
+
 # Phonebook
 
 Phonebook is app to store and manage phone numbers.

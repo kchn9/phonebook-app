@@ -22,7 +22,11 @@ Install phonebook-app with npm
   npm i
 ```
 
-Create .env file:
+Create **.env** file in root folder:
+
+```bash
+  touch .env
+```
 
 _(example)_
 

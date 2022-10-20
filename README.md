@@ -26,7 +26,7 @@ Create .env file:
 
 _(example)_
 
-```brainfuck
+```j
   PORT=3001
   MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.oxt5nnb.mongodb.net/?retryWrites=true&w=majority
 ```

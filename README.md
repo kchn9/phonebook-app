@@ -10,6 +10,7 @@ Live here: http://kchn9-phonebook.fly.dev
 ## Tech Stack
 
 **front-end:** React, ChakraUI
+
 **back-end:** Node, Express, MongoDB (mongoose)
 
 ## Installation

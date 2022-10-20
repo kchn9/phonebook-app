@@ -1,19 +1,4 @@
-require("dotenv").config({
-  path: "../.env",
-});
 const mongoose = require("mongoose");
-
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log("Connection to MongoDB established");
-  })
-  .catch((error) => {
-    console.log(
-      "Conntection to MongoDB rejected, error has been caught: \n",
-      error
-    );
-  });
 
 const personSchema = mongoose.Schema({
   fullName: {

@@ -1,9 +1,13 @@
+<img src="https://iili.io/ti97mg.md.png" height="150" alt="Logo">
+<h1 style="display: inline; vertical-align: top; line-height: 4; margin-left: 10px">Phonebook</h1>
 # Phonebook
 
 Phonebook is app to store and manage phone numbers.
 App have been deployed to _fly.io_.
 
-Live here: http://kchn9-phonebook.fly.dev
+### Check it live
+
+http://kchn9-phonebook.fly.dev
 
 ![Phonebook demo](https://media.giphy.com/media/Vwx0QkWLgUKFJEcjUf/giphy.gif)
 
